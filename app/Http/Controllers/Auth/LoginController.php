@@ -39,7 +39,8 @@ class LoginController extends Controller
     public function login(Request $request)
     {
         $user = $this->isVerfiedUser($request->username);
-        if (!$user->is_verified){
+
+        if (isset($user) && !$user->is_verified){
             return redirect()
                 ->route('login')
                 ->with('failed', 'User not verified please verify first from your email');
